@@ -17,22 +17,29 @@ function init($request = array(), $urlconf = array()) {
   // Массив текущего вывода модулей.
   $c = array();
 
-  // Пробергаем по всем определениям ресурсов и для подходящих URL
+  // Пробегаем по всем определениям ресурсов и для подходящих URL
   // вызываем процедуры их модулей, соответствующие методу HTTP-запроса.
   $q = isset($request['url']) ? $request['url'] : '';
   $method = isset($request['method']) ? $request['method'] : 'get';
+  
   foreach ($urlconf as $url => $r) {
     $matches = array();
     if ($url == '' || $url[0] != '/') {
-      // Если не регулярное выражение, то поверяем на равенство.
+      // Если не регулярное выражение, то проверяем на равенство.
       if ($url != $q) {
         continue;
       }
+      // Для простого совпадения создаем пустой массив совпадений
+      $matches = array(array($q));
     }
     else {
       // Проверяем соответствие URL запроса регулярному выражению.
-      if (!preg_match_all($url, $q, $matches)) {
+      if (!preg_match_all($url, $q, $matches, PREG_SET_ORDER)) {
         continue;
+      }
+      // Извлекаем первый набор совпадений
+      if (!empty($matches[0])) {
+        $matches = $matches[0];
       }
     }
 
@@ -64,9 +71,20 @@ function init($request = array(), $urlconf = array()) {
 
     // Собираем параметры в массив.
     $params = array('request' => $request);
-    array_shift($matches);
-    foreach ($matches as $key => $match) {
-      $params[$key] = $match[0];
+    
+    // Убираем первый элемент (полное совпадение) и преобразуем остальные
+    if (!empty($matches) && is_array($matches)) {
+      // Если первый элемент - это полное совпадение, пропускаем его
+      $start = (isset($matches[0]) && !is_array($matches[0])) ? 1 : 0;
+      foreach ($matches as $key => $match) {
+        if ($key < $start) continue;
+        // $match - это может быть массив из preg_match_all или просто строка
+        if (is_array($match) && isset($match[0])) {
+          $params[$key - $start] = $match[0];
+        } elseif (!is_array($match)) {
+          $params[$key - $start] = $match;
+        }
+      }
     }
 
     // Вызываем обработчик запроса в модуле передавая параметры из $params.
@@ -114,7 +132,7 @@ function url($addr = '', $params = array()) {
   if ($addr == '' && isset($_GET['q'])) {
     $addr = strip_tags($_GET['q']);
   }
-  // В зависимоти от настроек проекта генерируем чистые ссылки или ссылки с параметром.
+  // В зависимости от настроек проекта генерируем чистые ссылки или ссылки с параметром.
   $clean = conf('clean_urls');
   $r = $clean ? '/' : '?q=';
   $r .= strip_tags($addr);
