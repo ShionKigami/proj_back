@@ -17,9 +17,9 @@ $conf = array(
   'admin_mail' => 'sin@kubsu.ru',
   // DB settings
   'db_host' => 'localhost',
-  'db_name' => 'u82197',
-  'db_user' => 'u82197',
-  'db_psw' => '6410666',
+  'db_name' => 'u82624',
+  'db_user' => 'u82624',
+  'db_psw' => '8440989',
 );
 
 $urlconf = array(
