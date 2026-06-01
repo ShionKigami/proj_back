@@ -16,8 +16,6 @@ include('init.php');
 
 
 include('./db.php');
-var_dump(conf('db_user'));
-var_dump(conf('db_psw'));
 
 $request = array(
   'url' => isset($_GET['q']) ? $_GET['q'] : '',
