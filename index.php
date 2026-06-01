@@ -1,4 +1,5 @@
 <?php
+
 include('./settings.php');
 
 // Выключаем отображение ошибок после отладки.
@@ -12,6 +13,11 @@ ini_set('include_path', INCLUDE_PATH);
 
 
 include('init.php');
+
+
+include('./db.php');
+var_dump(conf('db_user'));
+var_dump(conf('db_psw'));
 
 $request = array(
   'url' => isset($_GET['q']) ? $_GET['q'] : '',
