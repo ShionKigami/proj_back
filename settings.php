@@ -21,14 +21,14 @@ $conf = array(
   'date_format' => 'Y.m.d',
   'date_format_2' => 'Y.m.d H:i',
   'date_format_3' => 'd.m.Y',
-  'basedir' => '/project_beta/',
+  'basedir' => '/project_gamma/',
   'login' => 'admin',
   'password' => '123',
   'admin_mail' => 'inog10@yandex.ru',
    'db_host' => 'localhost',
-   'db_name' => 'u82624',
-    'db_user' => 'u82624',
-    'db_psw'  => '8440989',
+   'db_name' => 'u82197',
+    'db_user' => 'u82197',
+    'db_psw'  => '6410666',
 );
 
 // Определения ресурсов для диспатчера.
@@ -41,6 +41,7 @@ $urlconf = array(
   '/^logout$/' => array('module' => 'logout'),
   '/^admin$/' => array('module' => 'admin', 'auth' => 'auth_basic'),
   '/^admin\/(\d+)$/' => array('module' => 'admin', 'auth' => 'auth_basic'),
+  '/^admin\/update$/' => array('module' => 'admin', 'auth' => 'auth_basic'),
 
 /*  '/^order\/(\d+)$/' => array('module' => 'order', 'auth' => 'auth_db_basic'),
   '/^order\/(\d+)\/add$/' => array('module' => 'order_add', 'auth' => 'auth_db_basic'),
