@@ -21,14 +21,14 @@ $conf = array(
   'date_format' => 'Y.m.d',
   'date_format_2' => 'Y.m.d H:i',
   'date_format_3' => 'd.m.Y',
-  'basedir' => '/',
+  'basedir' => '/project_beta/',
   'login' => 'admin',
   'password' => '123',
   'admin_mail' => 'inog10@yandex.ru',
    'db_host' => 'localhost',
-   'db_name' => 'u82624',
-    'db_user' => 'u82624',
-    'db_psw'  => '8440989',
+   'db_name' => 'u82197',
+    'db_user' => 'u82197',
+    'db_psw'  => '6410666',
 );
 
 // Определения ресурсов для диспатчера.

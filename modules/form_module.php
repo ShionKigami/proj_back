@@ -3,7 +3,12 @@
 
 function form_module_get($request) {
     $c = array();
-    
+//-------------------------------------------------------
+if (!empty($_COOKIE['login_success'])) {
+        $c['success_message'] = 'Вы успешно вошли в систему!';
+        setcookie('login_success', '', 100000);
+    }
+//-------------------------------------------------------
     // Проверяем, авторизован ли пользователь
     $is_authenticated = !empty($request['user']['login']);
     $c['is_authenticated'] = $is_authenticated;

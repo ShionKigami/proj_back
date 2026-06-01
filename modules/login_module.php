@@ -4,7 +4,11 @@
 function login_module_get($request) {
     // Если уже авторизован, редирект на форму
     if (!empty($request['user']['login'])) {
-        return redirect('form');
+        $c = array(
+            'error' => false,
+            'message' => 'Вы уже авторизованы. <a href="?q=logout">Выйти?</a>'
+        );
+        return theme('login', $c);
     }
     
     $error = !empty($_COOKIE['login_error']);
