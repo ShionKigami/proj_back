@@ -24,11 +24,11 @@ $conf = array(
   'basedir' => '/project_gamma/',
   'login' => 'admin',
   'password' => '123',
-  'admin_mail' => 'inog10@yandex.ru',
+  'admin_mail' => 'steblewets.ant@gmail.com',
    'db_host' => 'localhost',
-   'db_name' => 'u82197',
-    'db_user' => 'u82197',
-    'db_psw'  => '6410666',
+   'db_name' => 'u82624',
+    'db_user' => 'u82624',
+    'db_psw'  => '8440989',
 );
 
 // Определения ресурсов для диспатчера.
