@@ -1,7 +1,7 @@
 <?php
 // admin.php
 
-function admin_get($request) {
+function admin_get($request , $id = null) {
     global $db;
     
     // Проверяем, есть ли параметр edit
